@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_architecture/presentation/splash/splash.dart';
 
 class Routes {
@@ -37,7 +38,8 @@ class RouteGenerator {
   static Route<dynamic> unDefinedRoute(){
     return MaterialPageRoute(builder: (_) => 
        Scaffold(
-        appBar: AppBar(title: const Text("No route found")),
+        appBar: AppBar(title: const Text(AppString.noRouteFound)),
+        body: const Center(child: Text(AppString.noRouteFound)),
        )
     );
   }
