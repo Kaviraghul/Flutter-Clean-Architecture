@@ -20,16 +20,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Changing dart sdk 
-      uses: dart-lang/setup-dart@v1.3
-      with:
-        sdk: 2.18.5
-
     - name: Set up flutter
-      uses: subosito/flutter-action@v1.4.0
+      uses: subosito/flutter-action@v2
       with:
+        flutter-version: '3.3.9'
         channel: 'stable'
-
+    
     - name: Get pub dependencies
       run: flutter pub get
 
