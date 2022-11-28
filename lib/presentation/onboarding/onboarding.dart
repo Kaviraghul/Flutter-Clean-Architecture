@@ -88,6 +88,10 @@ class _OnboardingViewState extends State<OnboardingView> {
             ),
             onTap: () {
               //go to next slide
+              _pageController.animateToPage(
+                _getPreviousIndex(), 
+                duration: const Duration(microseconds: DurationConstant.d300), 
+                curve: Curves.bounceIn);
             },
           ),
         ),

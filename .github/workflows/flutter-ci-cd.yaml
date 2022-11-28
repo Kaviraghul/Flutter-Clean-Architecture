@@ -1,0 +1,83 @@
+#this for visuals to know the name and purpose of the file in github actions
+name: Flutter CI + CD
+
+#This work flow is triggered on push to the repository.
+on:
+  push:
+    branches: [ main ]
+  #this trigger is to run the work flows on PR's to the main branch
+  pull_request:
+    branches: [ main ]
+
+
+#Jobs are basically instances of virtual machines that you are going to run specific steps
+jobs:
+  code-analysis-and-testing:
+    name: Code analysis and testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps: 
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up flutter
+      uses: subosito/flutter-action@v1.4.0
+      with:
+        channel: 'stable'
+
+    - name: Get pub dependencies
+      run: flutter pub get
+
+    - name: Flutter analyze
+      run: flutter analyze
+
+    - name: Flutter test
+      run: flutter test
+
+  android:
+    name: Android CI/CD
+    needs: code-analysis-and-testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Prepare key.jks and key.properties file
+        env: 
+          FS_KEYSTORE_FILE: ${{ secrets.FS_KEYSTORE_FILE }}
+          FS_KEY_PROPERTIES_FILE: ${{ secrets.FS_KEY_PROPERTIES_FILE }}
+        run:
+          echo "Convert base64 strings to files"
+          echo "$FS_KEYSTORE_FILE" >> key.jks.base64
+          echo "$FS_KEY_PROPERTIES_FILE" >> key.properties.base64
+          echo "done with base64 files creation"
+          base64 --decode key.jks.base64 > key.jks
+          echo "done key.jks"
+          base64 --decode key.properties.base64 > key.properties
+          echo "done key.properties"
+        working-directory: 'android/'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v1.4.0
+        with:
+          channel: 'stable'
+
+      - name: Flutter doctor
+        run: flutter doctor
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v1
+        with: 
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+    
+
+
+
+
+
