@@ -68,8 +68,8 @@ jobs:
       - name: Flutter doctor
         run: flutter doctor
 
-      - name: Build APK
-        run: flutter build apk --release
+      # - name: Build APK
+      #   run: flutter build apk --release
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v1
