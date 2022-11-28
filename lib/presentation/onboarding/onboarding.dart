@@ -7,13 +7,15 @@ import 'package:flutter_clean_architecture/presentation/resources/values_manager
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingView extends StatefulWidget {
+  const OnboardingView({super.key});
+
   @override
-  _OnboardingViewState createState() => _OnboardingViewState();
+  State<OnboardingView> createState() => _OnboardingViewState();
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
   late final List<SliderObject> _list = _getSliderData();
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentIndex = 0;
   List<SliderObject> _getSliderData() => [
         SliderObject(AppString.onBoardingTitle1, AppString.onBoardingSubTitle1,
@@ -102,7 +104,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           children: [
             for (int i = 0; i < _list.length; i++)
               Padding(
-                padding: EdgeInsets.all(AppPadding.p8),
+                padding: const EdgeInsets.all(AppPadding.p8),
                 child: _getProperCircle(i),
               ),
           ],
@@ -132,6 +134,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     return previousIndex;
   }
 
+   // ignore: unused_element
    int _getNextIndex(){
     int previousIndex = _currentIndex--;
     if(previousIndex == -1)_currentIndex = _list.length-1;
@@ -147,9 +150,10 @@ class _OnboardingViewState extends State<OnboardingView> {
   }
 }
 
+//ignore: must_be_immutable
 class OnBoardingPage extends StatelessWidget {
-  SliderObject _sliderObject;
-  OnBoardingPage(this._sliderObject, {Key? key}) : super(key: key);
+  final SliderObject _sliderObject;
+  const OnBoardingPage(this._sliderObject, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(

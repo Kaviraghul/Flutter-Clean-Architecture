@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/presentation/forgot_password/forgot_password.dart';
 import 'package:flutter_clean_architecture/presentation/login/login.dart';
@@ -27,7 +26,7 @@ class RouteGenerator {
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.onBoardingRoute:
-        return MaterialPageRoute(builder: (_) =>  OnboardingView());
+        return MaterialPageRoute(builder: (_) => const OnboardingView());
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswardRoute:
