@@ -127,6 +127,11 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
               onTap: () {
                 //go to next slide
+                _pageController.animateToPage(
+                  _getNextIndex(),
+                  duration: const Duration(microseconds: DurationConstant.d300),
+                  curve: Curves.bounceInOut,
+                );
               },
             ),
           )
@@ -138,14 +143,14 @@ class _OnboardingViewState extends State<OnboardingView> {
   int _getPreviousIndex() {
     int previousIndex = _currentIndex--;
     if (previousIndex == -1) _currentIndex = _list.length - 1;
-    return previousIndex;
+    return _currentIndex;
   }
 
   // ignore: unused_element
   int _getNextIndex() {
-    int previousIndex = _currentIndex--;
-    if (previousIndex >= _list.length) _currentIndex = 0;
-    return previousIndex;
+    int nextIndex = _currentIndex++;
+    if (nextIndex >= _list.length) _currentIndex = 0;
+    return _currentIndex;
   }
 
   Widget _getProperCircle(int index) {
