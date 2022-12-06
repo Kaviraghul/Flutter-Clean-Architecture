@@ -3,47 +3,77 @@
 import 'dart:async';
 
 import 'package:flutter_clean_architecture/data/model.dart';
+import 'package:flutter_clean_architecture/gen/assets.gen.dart';
 import 'package:flutter_clean_architecture/presentation/base/base_view_model.dart';
+import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
 
 class OnboardingViewModel extends BaseViewModel with OnboardingViewModelInputs, OnboardingViewModelOutputs{
 
   //streem controllers 
   final StreamController _streamController = StreamController<SliderViewObject>();
+  late final List<SliderObject> _list;
+  int _currentIndex = 0;
+  final assets = Assets.images;
 
    
-  // inputs 
+  // inputs section
+
   @override
   void dispose(){
-    // TODO: implement dipspose
+    _streamController.close();
   }
 
   @override
   void start(){
-    // TODO: implement start
+    _list = _getSliderData();
+    _postDataToView();
   }
   
   @override
-  void goNext() {
-    // TODO: implement goNext
+  int goNext() {
+    int nextIndex = _currentIndex++;
+    if (nextIndex >= _list.length) _currentIndex = 0;
+    return _currentIndex;
   }
   
   @override
-  void goPrevious() {
-    // TODO: implement goPrevious
+  int goPrevious() {
+    int previousIndex = _currentIndex--;
+    if (previousIndex == -1) _currentIndex = _list.length - 1;
+  
+
+    return _currentIndex;
   }
   
   @override
   void onPageChanged(int index) {
-    // TODO: implement onPageChanged
+    _currentIndex = index;
+    _postDataToView();
   }
   
   @override
   Sink get inputSliderViewObject => _streamController.sink;
   
-  //outputs
+  //outputs section
+
   @override
   Stream<SliderViewObject> get outpuSliderViewObject => _streamController.stream.map((sliderViewObject) => sliderViewObject);
 
+   //private function
+   List<SliderObject> _getSliderData() => [
+        SliderObject(AppString.onBoardingTitle1, AppString.onBoardingSubTitle1,
+            assets.onBoardingImage1.path),
+        SliderObject(AppString.onBoardingTitle2, AppString.onBoardingSubTitle2,
+            assets.onBoardingImage2.path),
+        SliderObject(AppString.onBoardingTitle3, AppString.onBoardingSubTitle3,
+            assets.onBoardingImage3.path),
+        SliderObject(AppString.onBoardingTitle4, AppString.onBoardingSubTitle4,
+            assets.onBoardingImage4.path),
+      ];
+
+  _postDataToView(){
+    inputSliderViewObject.add(SliderViewObject(_list[_currentIndex], _list.length, _currentIndex));
+  }
 }
 
 
