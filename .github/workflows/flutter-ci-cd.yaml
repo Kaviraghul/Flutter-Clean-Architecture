@@ -71,11 +71,11 @@ jobs:
       # - name: Build APK
       #   run: flutter build apk --release
 
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v1
-        with: 
-          name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+      # - name: Upload APK artifact
+      #   uses: actions/upload-artifact@v1
+      #   with: 
+      #     name: release-apk
+      #     path: build/app/outputs/flutter-apk/app-release.apk
 
     
 
