@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/data/model.dart';
 import 'package:flutter_clean_architecture/gen/assets.gen.dart';
-import 'package:flutter_clean_architecture/presentation/onboarding/onboarding_ViewModel.dart';
+import 'package:flutter_clean_architecture/presentation/onboarding/onboarding_view_model.dart';
 import 'package:flutter_clean_architecture/presentation/resources/color_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/values_manager.dart';
@@ -17,6 +17,7 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController(initialPage: 0);
+  // ignore: prefer_final_fields
   OnboardingViewModel _viewModel = OnboardingViewModel();
 
   _bind() {
@@ -153,8 +154,8 @@ class _OnboardingViewState extends State<OnboardingView> {
     );
   }
 
-  Widget _getProperCircle(int index, _currentIndex) {
-    if (index == _currentIndex) {
+  Widget _getProperCircle(int index, currentIndex) {
+    if (index == currentIndex) {
       return SvgPicture.asset(assets.hollowCircleIc.path);
     } else {
       return SvgPicture.asset(assets.solidCircleIc.path);
