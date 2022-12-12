@@ -29,7 +29,9 @@ enum DataSource {
   // ignore: constant_identifier_names
   CACHE_ERROR,
   // ignore: constant_identifier_names
-  NO_INTERNET_CONNECTION
+  NO_INTERNET_CONNECTION,
+  // ignore: constant_identifier_names
+  DEFAULT
 }
 
 class ResponseCode{
@@ -55,7 +57,7 @@ class ResponseCode{
   // Local status code  for network layer and interlogics
 
   // ignore: constant_identifier_names
-  static const int UNKNOWN                = -1;
+  static const int DEFAULT                = -1;
   // ignore: constant_identifier_names
   static const int CONNECT_TIMEOUT        = -2;
   // ignore: constant_identifier_names
@@ -72,7 +74,7 @@ class ResponseCode{
 }
 
 
-extension DataConnectionExtenson on DataSource{
+extension DataSourceExtension on DataSource{
   Failure getFailure(){
     switch(this){
       case DataSource.NO_CONTENT:
@@ -99,8 +101,10 @@ extension DataConnectionExtenson on DataSource{
          return Failure(ResponseCode.CACHE_ERROR, ResponseMessage.CACHE_ERROR);
       case DataSource.NO_INTERNET_CONNECTION:
          return Failure(ResponseCode.NO_INTERNET_CONNECTION, ResponseMessage.NO_INTERNET_CONNECTION);
+      case DataSource.DEFAULT:
+         return Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT);
       default:
-        return Failure(ResponseCode.UNKNOWN, ResponseMessage.UNKNOWN);
+        return Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT);
     }
     }
 }
@@ -129,7 +133,7 @@ class ResponseMessage{
   // Local status code  for network layer and interlogics
 
   // ignore: constant_identifier_names
-  static const String UNKNOWN                = "something went wrong, try again later";
+  static const String DEFAULT                = "something went wrong, try again later";
   // ignore: constant_identifier_names
   static const String CONNECT_TIMEOUT        = "time out error, try again later";
   // ignore: constant_identifier_names
@@ -143,4 +147,49 @@ class ResponseMessage{
   // ignore: constant_identifier_names
   static const String NO_INTERNET_CONNECTION = "Please check your internet connection";
 
+}
+
+
+
+class ErrorHandler implements Exception{
+  late Failure failure;
+
+  ErrorHandler.handle(dynamic error){
+    if(error is DioError){
+      failure = _handleError(error);
+    }else{
+      failure = DataSource.DEFAULT.getFailure();
+    }
+  }
+
+  Failure _handleError(DioError error){
+    switch(error.type){
+
+      case DioErrorType.connectTimeout:
+        return DataSource.CONNECT_TIMEOUT.getFailure();
+      case DioErrorType.sendTimeout:
+        return DataSource.SEND_TIMEOUT.getFailure();
+      case DioErrorType.receiveTimeout:
+        return DataSource.RECIEVE_TIMEOUT.getFailure();
+      case DioErrorType.response:
+        switch(error.response?.statusCode){
+          case ResponseCode.BAD_REQUEST:
+            return DataSource.BAD_REQUEST.getFailure();
+          case ResponseCode.FORBIDDEN:
+            return DataSource.FORBIDDEN.getFailure();
+          case ResponseCode.UNAUTHORISED:
+            return DataSource.UNAUTHORISED.getFailure();
+          case ResponseCode.NOT_FOUND:
+            return DataSource.NOT_FOUND.getFailure();
+          case ResponseCode.INTERNAL_SERVER_ERROR:
+            return DataSource.INTERNAL_SERVER_ERROR.getFailure();
+          default:
+            return DataSource.DEFAULT.getFailure();
+        }
+      case DioErrorType.cancel:
+        return DataSource.CANCEL.getFailure();
+      case DioErrorType.other:
+        return DataSource.DEFAULT.getFailure();
+    }
+  }
 }
