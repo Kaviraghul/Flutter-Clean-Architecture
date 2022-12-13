@@ -159,7 +159,7 @@ class ErrorHandler implements Exception{
       failure = _handleError(error);
     }else{
       failure = DataSource.DEFAULT.getFailure();
-    }
+    } 
   }
 
   Failure _handleError(DioError error){
@@ -192,4 +192,11 @@ class ErrorHandler implements Exception{
         return DataSource.DEFAULT.getFailure();
     }
   }
+}
+
+
+
+class ApiInternalStatus{
+  static const int SUCCESS = 0;
+  static const int FAILURE = 1;
 }
