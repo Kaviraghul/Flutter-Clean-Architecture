@@ -1,4 +1,6 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dio/dio.dart';
 import 'package:flutter_clean_architecture/app/constant.dart';
 import 'package:flutter_clean_architecture/data/responses/responses.dart';

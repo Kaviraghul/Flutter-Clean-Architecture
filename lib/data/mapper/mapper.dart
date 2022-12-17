@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter_clean_architecture/app/extensions.dart';
 import 'package:flutter_clean_architecture/data/responses/responses.dart';
 import 'package:flutter_clean_architecture/domain/model.dart';
