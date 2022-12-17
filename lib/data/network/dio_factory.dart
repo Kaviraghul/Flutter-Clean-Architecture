@@ -1,34 +1,33 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, prefer_final_fields, constant_identifier_names
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_clean_architecture/app/app_prefs.dart';
 import 'package:flutter_clean_architecture/app/constant.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 
-// ignore: constant_identifier_names
+
 const String APPLICATION_JSON = "application/json";
-// ignore: constant_identifier_names
 const String CONTENT_TYPE = "content-type";
-// ignore: constant_identifier_names
 const String ACCEPT = "accept";
-// ignore: constant_identifier_names
 const String AUTHORIZATION = "authorization";
-// ignore: constant_identifier_names
 const String DEFAULT_LANGUAGE = "language";
-// ignore: constant_identifier_names
 
 class DioFactory{
+
+  AppPreferences _appPreferences;
+  DioFactory(this._appPreferences);
   Future<Dio>getDio()async{
     Dio dio = Dio();
     // ignore: no_leading_underscores_for_local_identifiers
     int _timeOut = 60 *1000; // 1min
-    
+    String langauage = await _appPreferences.getAppLanguage();
     Map<String, String> headers = {
       CONTENT_TYPE      : APPLICATION_JSON,
       ACCEPT            : APPLICATION_JSON,
       AUTHORIZATION     : Constant.token,
-      DEFAULT_LANGUAGE  : "en"
+      DEFAULT_LANGUAGE  : langauage
     };
 
     dio.options = BaseOptions(
