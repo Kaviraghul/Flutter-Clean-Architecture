@@ -40,8 +40,6 @@ class OnboardingViewModel extends BaseViewModel with OnboardingViewModelInputs, 
   int goPrevious() {
     int previousIndex = _currentIndex--;
     if (previousIndex == -1) _currentIndex = _list.length - 1;
-  
-
     return _currentIndex;
   }
   

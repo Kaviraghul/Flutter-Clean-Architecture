@@ -12,10 +12,8 @@ import 'package:flutter_clean_architecture/data/mapper/mapper.dart';
 
 class RepositoryImpl extends Repository{
 
-  // ignore: prefer_final_fields
-  RemoteDataSource _remoteDataSource;
-  // ignore: prefer_final_fields
-  NetworkInfo _networkInfo;
+  final RemoteDataSource _remoteDataSource;
+  final NetworkInfo _networkInfo;
 
   RepositoryImpl(this._networkInfo, this._remoteDataSource);
 
