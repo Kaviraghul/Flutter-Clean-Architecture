@@ -1,37 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter_clean_architecture/presentation/base/base_view_model.dart';
 
 class LoginViewModel extends BaseViewModel with LoginViewModelInput,LoginViewModelOutput{
+
+//two streem controllers for user name and user password 
+  StreamController UserNameStreamController = StreamController<String>.broadcast();
+  StreamController PasswordStreamController = StreamController<String>.broadcast();
+
+
   @override
   void dispose() {
-    // TODO: implement dispose
+    UserNameStreamController.close();
+    PasswordStreamController.close();
   }
 
   @override
   void start() {
     // TODO: implement start
   }
-  
-  @override
-  // TODO: implement inputPassword
-  Sink get inputPassword => throw UnimplementedError();
-  
-  @override
-  // TODO: implement inputUsername
-  Sink get inputUsername => throw UnimplementedError();
-  
+   
   @override
   login() {
     // TODO: implement login
     throw UnimplementedError();
   }
-  
-  @override
-  // TODO: implement outputLoginPassword
-  Stream<bool> get outputLoginPassword => throw UnimplementedError();
-  
-  @override
-  // TODO: implement outputLoginUsername
-  Stream<bool> get outputLoginUsername => throw UnimplementedError();
   
   @override
   setPassword() {
@@ -45,6 +38,25 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInput,LoginViewMod
     throw UnimplementedError();
   }
 
+  @override
+  Sink get inputPassword => PasswordStreamController.sink;
+  
+  @override
+  Sink get inputUsername => UserNameStreamController.sink;
+
+  @override
+  Stream<bool> get outputLoginPassword => PasswordStreamController.stream.map((password) => _isPasswordValid(password));
+  
+  @override
+  Stream<bool> get outputLoginUsername => UserNameStreamController.stream.map((username) => _isUsernameValid(username));
+
+  bool _isPasswordValid(String password){
+    return password.isNotEmpty;
+  }
+
+  bool _isUsernameValid(String username){
+    return username.isNotEmpty;
+  }
 }
 
 abstract class LoginViewModelInput{
