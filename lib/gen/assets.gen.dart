@@ -22,6 +22,10 @@ class $AssetsImagesGen {
   SvgGenImage get leftArrowIc =>
       const SvgGenImage('assets/images/left_arrow_ic.svg');
 
+  /// File path: assets/images/login_ic.png
+  AssetGenImage get loginIc =>
+      const AssetGenImage('assets/images/login_ic.png');
+
   /// File path: assets/images/on_boarding_image_1.png
   AssetGenImage get onBoardingImage1 =>
       const AssetGenImage('assets/images/on_boarding_image_1.png');
@@ -50,6 +54,7 @@ class $AssetsImagesGen {
   List<dynamic> get values => [
         hollowCircleIc,
         leftArrowIc,
+        loginIc,
         onBoardingImage1,
         onBoardingImage2,
         onBoardingImage3,

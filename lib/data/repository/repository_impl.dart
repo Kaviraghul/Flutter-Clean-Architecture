@@ -21,7 +21,7 @@ class RepositoryImpl extends Repository{
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest) async {
     if(await _networkInfo.isConneected){
 
-      // this will return the future responce of Authentication responce
+      // this will return the future response of Authentication responce
 
       try {
       final response = await _remoteDataSource.login(loginRequest);
