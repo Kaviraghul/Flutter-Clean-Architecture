@@ -4,6 +4,7 @@ import 'package:flutter_clean_architecture/domain/model.dart';
 import 'package:flutter_clean_architecture/gen/assets.gen.dart';
 import 'package:flutter_clean_architecture/presentation/onboarding/onboarding_view_model.dart';
 import 'package:flutter_clean_architecture/presentation/resources/color_manager.dart';
+import 'package:flutter_clean_architecture/presentation/resources/routes_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -74,7 +75,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.pushReplacementNamed(context, Routes.loginRoute);},
                   child: Text(
                     AppString.skip,
                     style: Theme.of(context).textTheme.subtitle2,
