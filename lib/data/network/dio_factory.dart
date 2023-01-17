@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, prefer_final_fields, constant_identifier_names
+// ignore_for_file: unused_local_variable, prefer_final_fields, constant_identifier_names, no_leading_underscores_for_local_identifiers
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -17,11 +17,13 @@ const String DEFAULT_LANGUAGE = "language";
 class DioFactory{
 
   AppPreferences _appPreferences;
+  
   DioFactory(this._appPreferences);
+
   Future<Dio>getDio()async{
-    Dio dio = Dio();
-    // ignore: no_leading_underscores_for_local_identifiers
-    int _timeOut = 60 *1000; // 1min
+
+    Dio dio =  Dio();
+    int _timeOut = 60 * 1000; // 1min
     String langauage = await _appPreferences.getAppLanguage();
     Map<String, String> headers = {
       CONTENT_TYPE      : APPLICATION_JSON,
