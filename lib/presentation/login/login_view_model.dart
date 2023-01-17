@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_final_fields
+
 import 'dart:async';
 
 import 'package:flutter_clean_architecture/domain/login_usecase.dart';
@@ -28,7 +30,6 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void start() {
-    // TODO: implement start
   }
 
   @override

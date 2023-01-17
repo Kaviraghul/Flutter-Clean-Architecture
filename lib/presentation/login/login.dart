@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/app/dependencyInjection.dart';
+import 'package:flutter_clean_architecture/app/dependency_injection.dart';
 import 'package:flutter_clean_architecture/gen/assets.gen.dart';
-import 'package:flutter_clean_architecture/presentation/login/loginViewModel.dart';
+import 'package:flutter_clean_architecture/presentation/login/login_view_model.dart';
 import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/values_manager.dart';
 
