@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_final_fields
+
 import 'dart:async';
 
 import 'package:flutter_clean_architecture/domain/login_usecase.dart';
@@ -16,7 +18,7 @@ class LoginViewModel extends BaseViewModel
 
   var loginObject = LoginObject(username: "", password: "");
 
-  LoginUseCase? _loginUseCase;
+  LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
 
   @override
@@ -28,15 +30,14 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void start() {
-    // TODO: implement start
   }
 
   @override
   login() async {
-    // (await _loginUseCase.execute(
-    //         LoginUseCaseInput(loginObject.username, loginObject.password)))
-    //     .fold((failure) => print(failure.message),
-    //         (data) => print(data.customer!.name));
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.username, loginObject.password)))
+        .fold((failure) => print(failure.message),
+            (data) => print(data.customer!.name));
   }
 
   @override

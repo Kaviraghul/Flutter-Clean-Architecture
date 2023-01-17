@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/app/dependency_injection.dart';
 import 'package:flutter_clean_architecture/gen/assets.gen.dart';
-import 'package:flutter_clean_architecture/presentation/login/loginViewModel.dart';
+import 'package:flutter_clean_architecture/presentation/login/login_view_model.dart';
 import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/values_manager.dart';
 
@@ -16,8 +17,7 @@ class _LoginViewState extends State<LoginView> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final asset = Assets.images;
-  final LoginViewModel _viewModel =
-      LoginViewModel(null); //todoo: must add login usecase
+  final LoginViewModel _viewModel = instance<LoginViewModel>(); //todoo: must add login usecase
 
   void _bind() {
     _viewModel.start();
