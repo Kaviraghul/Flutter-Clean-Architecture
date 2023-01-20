@@ -1,5 +1,11 @@
 // ignore_for_file: void_checks
 
+// In general, the flowstate class and the state renderer class are typically
+// connected in a way that the flowstate class is responsible for holding the
+// state of the application, and the state renderer class is responsible for
+// displaying that state to the user. When the flowstate class updates the state,
+// the state renderer class is responsible for updating the view accordingly.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/mapper/mapper.dart';
 import 'package:flutter_clean_architecture/data/network/failure.dart';
@@ -26,7 +32,6 @@ enum StateRendererType {
 
 class StateRenderer extends StatelessWidget {
   final StateRendererType stateRenderertype;
-  final Failure failure;
   final String message;
   final String title;
   final Function? retryActionFunction;
@@ -40,7 +45,6 @@ class StateRenderer extends StatelessWidget {
     required this.retryActionFunction,
   })  : message = message ?? AppString.loading,
         title = title ?? EMPTY,
-        failure = failure ?? DefaultFailure(),
         super(key: key);
 
   @override
@@ -58,7 +62,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.popupErrorState:
         return _getPopUpDialog(context, [
           _getAnimatedWidget(asset.error.path),
-          _getMessage(failure.message),
+          _getMessage(message),
           _getRetryButton(AppString.ok, context)
         ]);
       case StateRendererType.fullScreenLoadingState:
@@ -67,7 +71,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.fullScreenErrorState:
         return _getItemsInColumn([
           _getAnimatedWidget(asset.error.path),
-          _getMessage(failure.message),
+          _getMessage(message),
           _getRetryButton(AppString.retryAgain, context)
         ]);
       case StateRendererType.contentScreenState:
