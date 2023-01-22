@@ -4,6 +4,8 @@
 // The state renderer class can then access the information it needs from the
 // flowstate object to display the current state of the application.
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/mapper/mapper.dart';
 import 'package:flutter_clean_architecture/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_architecture/presentation/resources/strings_manager.dart';
@@ -68,4 +70,65 @@ class EmptyState extends FlowState {
   @override
   StateRendererType getStateRendererType() =>
       StateRendererType.emptyScreenState;
+}
+
+extension FlowStateExtension on FlowState {
+  Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
+      Function retryActionFunction) {
+    showPopUp(BuildContext context, StateRendererType stateRendererType,
+        String message) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
+          context: context,
+          builder: (BuildContext context) => StateRenderer(
+                stateRenderertype: stateRendererType,
+                message: message,
+                retryActionFunction: () {},
+              )));
+    }
+
+    switch (this.runtimeType) {
+      case LoadingState:
+        {
+          if (getStateRendererType() == StateRendererType.popupLoadingState) {
+            showPopUp(context, getStateRendererType(), getMessage());
+            return contentScreenWidget;
+          } else {
+            return StateRenderer(
+              stateRenderertype: getStateRendererType(),
+              retryActionFunction: retryActionFunction,
+              message: getMessage(),
+            );
+          }
+        }
+      case ErrorState:
+        {
+          if (getStateRendererType() == StateRendererType.popupErrorState) {
+            showPopUp(context, getStateRendererType(), getMessage());
+            return contentScreenWidget;
+          } else {
+            return StateRenderer(
+              stateRenderertype: getStateRendererType(),
+              retryActionFunction: retryActionFunction,
+              message: getMessage(),
+            );
+          }
+        }
+      case ContentState:
+        {
+          return contentScreenWidget;
+        }
+      case EmptyState:
+        {
+          return StateRenderer(
+            stateRenderertype: getStateRendererType(),
+            message: getMessage(),
+            retryActionFunction: retryActionFunction,
+          );
+        }
+      default:
+        {
+          return contentScreenWidget;
+        }
+    }
+  }
 }
