@@ -69,7 +69,7 @@ class AuthenticationResponse extends BaseResponse {
 @JsonSerializable()
 class ServiceResponse {
   @JsonKey(name: "id")
-  int? id;
+  String? id;
   @JsonKey(name: "title")
   String? title;
   @JsonKey(name: "image")
@@ -77,7 +77,7 @@ class ServiceResponse {
 
   ServiceResponse(this.id, this.title, this.image);
 
-    // from json
+  // from json
   factory ServiceResponse.fromJson(Map<String, dynamic> json) =>
       _$ServiceResponseFromJson(json);
 
@@ -85,11 +85,10 @@ class ServiceResponse {
   Map<String, dynamic> toJson() => _$ServiceResponseToJson(this);
 }
 
-
 @JsonSerializable()
 class StoresResponse {
   @JsonKey(name: "id")
-  int? id;
+  String? id;
   @JsonKey(name: "title")
   String? title;
   @JsonKey(name: "image")
@@ -97,7 +96,7 @@ class StoresResponse {
 
   StoresResponse(this.id, this.title, this.image);
 
-    // from json
+  // from json
   factory StoresResponse.fromJson(Map<String, dynamic> json) =>
       _$StoresResponseFromJson(json);
 
@@ -105,11 +104,10 @@ class StoresResponse {
   Map<String, dynamic> toJson() => _$StoresResponseToJson(this);
 }
 
-
 @JsonSerializable()
 class BannerResponse {
   @JsonKey(name: "id")
-  int? id;
+  String? id;
   @JsonKey(name: "title")
   String? title;
   @JsonKey(name: "image")
@@ -119,14 +117,13 @@ class BannerResponse {
 
   BannerResponse(this.id, this.title, this.image);
 
-    // from json
+  // from json
   factory BannerResponse.fromJson(Map<String, dynamic> json) =>
       _$BannerResponseFromJson(json);
 
   // to json
   Map<String, dynamic> toJson() => _$BannerResponseToJson(this);
 }
-
 
 @JsonSerializable()
 class HomeDataResponse {
@@ -139,7 +136,7 @@ class HomeDataResponse {
 
   HomeDataResponse(this.service, this.store, this.banner);
 
-    // from json
+  // from json
   factory HomeDataResponse.fromJson(Map<String, dynamic> json) =>
       _$HomeDataResponseFromJson(json);
 
@@ -154,14 +151,10 @@ class HomeResponse extends BaseResponse {
 
   HomeResponse(this.data);
 
-    // from json
+  // from json
   factory HomeResponse.fromJson(Map<String, dynamic> json) =>
       _$HomeResponseFromJson(json);
 
   // to json
   Map<String, dynamic> toJson() => _$HomeResponseToJson(this);
 }
-
-
-
-

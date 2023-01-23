@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class SliderObject {
   String title;
   String subTitle;
@@ -5,7 +6,6 @@ class SliderObject {
 
   SliderObject(this.title, this.subTitle, this.image);
 }
-
 
 class Customer {
   String id;
@@ -15,7 +15,6 @@ class Customer {
   Customer(this.id, this.name, this.numOfNotifications);
 }
 
-
 class Contacts {
   String email;
   String phone;
@@ -24,18 +23,65 @@ class Contacts {
   Contacts(this.email, this.phone, this.link);
 }
 
-
 class Authentication {
   Customer? customer;
   Contacts? contacts;
 
-  Authentication( this.customer, this.contacts);
+  Authentication(this.customer, this.contacts);
 }
 
-
-class DeviceInfo{
+class DeviceInfo {
   String name;
   String identifier;
   String version;
   DeviceInfo(this.name, this.identifier, this.version);
+}
+
+class Service {
+  String id;
+  String title;
+  String image;
+  Service(
+    this.id,
+    this.title,
+    this.image,
+  );
+}
+
+class Store {
+  String id;
+  String title;
+  String image;
+  Store(
+    this.id,
+    this.title,
+    this.image,
+  );
+}
+
+class BannerAd {
+  String id;
+  String title;
+  String image;
+  BannerAd(
+    this.id,
+    this.title,
+    this.image,
+  );
+}
+
+class HomeData {
+  List<Service> service;
+  List<Store> store;
+  List<BannerAd> banners;
+  HomeData(
+    this.service,
+    this.store,
+    this.banners,
+  );
+}
+
+class HomeObject {
+  HomeData data;
+  HomeObject(this.data);
 }
