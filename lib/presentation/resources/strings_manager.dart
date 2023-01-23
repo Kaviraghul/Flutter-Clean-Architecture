@@ -19,4 +19,9 @@ class AppString {
   static const String login               = "Login";
   static const String forgotPassword      = "Forgot password?";
   static const String signUp              = "Not a member? sign up";
+
+  static const String home              = "Home";
+  static const String notification      = "Notification";
+  static const String search            = "Search";
+  static const String settings          = "Settings";
 }
