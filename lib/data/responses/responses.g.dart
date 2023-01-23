@@ -70,7 +70,7 @@ Map<String, dynamic> _$AuthenticationResponseToJson(
 
 ServiceResponse _$ServiceResponseFromJson(Map<String, dynamic> json) =>
     ServiceResponse(
-      json['id'] as String?,
+      json['id'] as int?,
       json['title'] as String?,
       json['image'] as String?,
     );
@@ -84,7 +84,7 @@ Map<String, dynamic> _$ServiceResponseToJson(ServiceResponse instance) =>
 
 StoresResponse _$StoresResponseFromJson(Map<String, dynamic> json) =>
     StoresResponse(
-      json['id'] as String?,
+      json['id'] as int?,
       json['title'] as String?,
       json['image'] as String?,
     );
@@ -98,7 +98,7 @@ Map<String, dynamic> _$StoresResponseToJson(StoresResponse instance) =>
 
 BannerResponse _$BannerResponseFromJson(Map<String, dynamic> json) =>
     BannerResponse(
-      json['id'] as String?,
+      json['id'] as int?,
       json['title'] as String?,
       json['image'] as String?,
     )..link = json['link'] as String?;
