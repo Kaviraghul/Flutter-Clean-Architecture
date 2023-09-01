@@ -1,8 +1,8 @@
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter_clean_architecture/domain/login_usecase.dart';
 import 'package:flutter_clean_architecture/presentation/login/login_view_model.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,7 +28,7 @@ Future<void> initAppModule() async {
 
   // network class
   instance.registerLazySingleton<NetworkInfo>(
-      () => NetworkInfoImplementation(DataConnectionChecker()));
+      () => NetworkInfoImplementation(InternetConnectionChecker()));
 
   // Dio factory class
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));

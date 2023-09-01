@@ -1,20 +1,18 @@
-
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'responses.g.dart';
 
 @JsonSerializable()
-class BaseResponse{
+class BaseResponse {
   @JsonKey(name: "status")
   int? status;
   @JsonKey(name: "message")
   String? message;
 }
 
-
 @JsonSerializable()
-class CustomerResponse{
+class CustomerResponse {
   @JsonKey(name: "id")
   String? id;
   @JsonKey(name: "name")
@@ -25,14 +23,15 @@ class CustomerResponse{
   CustomerResponse(this.id, this.name, this.numOfNotifications);
 
   // from json
-  factory CustomerResponse.fromJson(Map<String, dynamic> json) => _$CustomerResponseFromJson(json);
+  factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomerResponseFromJson(json);
 
   // to json
   Map<String, dynamic> toJson() => _$CustomerResponseToJson(this);
 }
 
 @JsonSerializable()
-class ContactResponse{
+class ContactResponse {
   @JsonKey(name: "email")
   String? email;
   @JsonKey(name: "phone")
@@ -43,14 +42,15 @@ class ContactResponse{
   ContactResponse(this.email, this.phone, this.link);
 
   // from json
-  factory ContactResponse.fromJson(Map<String, dynamic> json) => _$ContactResponseFromJson(json);
+  factory ContactResponse.fromJson(Map<String, dynamic> json) =>
+      _$ContactResponseFromJson(json);
 
   // to json
   Map<String, dynamic> toJson() => _$ContactResponseToJson(this);
 }
 
 @JsonSerializable()
-class AuthenticationResponse extends BaseResponse{
+class AuthenticationResponse extends BaseResponse {
   @JsonKey(name: "customer")
   CustomerResponse? customer;
   @JsonKey(name: "contacts")
@@ -59,12 +59,9 @@ class AuthenticationResponse extends BaseResponse{
   AuthenticationResponse(this.customer, this.contacts);
 
   // from json
-  factory AuthenticationResponse.fromJson(Map<String, dynamic> json) => _$AuthenticationResponseFromJson(json);
+  factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthenticationResponseFromJson(json);
 
   // to json
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
-
-
 }
-
-

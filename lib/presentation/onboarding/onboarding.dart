@@ -75,7 +75,9 @@ class _OnboardingViewState extends State<OnboardingView> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {Navigator.pushReplacementNamed(context, Routes.loginRoute);},
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                  },
                   child: Text(
                     AppString.skip,
                     style: Theme.of(context).textTheme.subtitle2,
