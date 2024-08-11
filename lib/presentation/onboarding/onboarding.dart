@@ -80,7 +80,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   },
                   child: Text(
                     AppString.skip,
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.end,
                   ),
                 ),
@@ -187,7 +187,7 @@ class OnBoardingPage extends StatelessWidget {
           child: Text(
             _sliderObject.title,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
         Padding(
@@ -195,7 +195,7 @@ class OnBoardingPage extends StatelessWidget {
           child: Text(
             _sliderObject.subTitle,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         const SizedBox(height: AppSize.s60),
