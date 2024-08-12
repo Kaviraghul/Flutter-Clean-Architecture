@@ -37,13 +37,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.2.1
   get_it: ^7.6.2
-  device_info_plus: ^9.0.3
+  device_info_plus: ^10.1.2
   pretty_dio_logger: ^1.2.0-beta-1
   dartz: ^0.10.1
   flutter_svg: ^2.0.7
-  dio: ^4.0.6
-  retrofit: ^3.3.1
-  analyzer: ^5.13.0
+  dio: ^5.5.0+1
+  retrofit: ^4.1.0
+  analyzer: ^6.7.0
   freezed_annotation: ^2.4.1
   internet_connection_checker: ^1.0.0+1
   flutter_bloc: ^8.1.6
@@ -61,8 +61,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
 
-  flutter_lints: ^2.0.0
-  retrofit_generator: ^4.2.0
+  flutter_lints: ^4.0.0
+  retrofit_generator: ^8.1.2
   build_runner: ^2.3.2
   flutter_gen_runner: ^5.1.0+1
   json_serializable: ^6.7.1
