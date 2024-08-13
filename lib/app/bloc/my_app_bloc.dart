@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'my_app_event.dart';
 part 'my_app_state.dart';
-part 'my_app_bloc.freezed.dart';
 
 class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
   MyAppBloc() : super(_Initial()) {

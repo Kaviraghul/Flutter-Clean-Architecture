@@ -6,14 +6,13 @@ import 'package:flutter_clean_architecture/presentation/resources/color_manager.
 import 'package:flutter_clean_architecture/presentation/resources/routes_manager.dart';
 
 class SplashView extends StatefulWidget {
-  const SplashView({ Key? key }) : super(key: key);
+  const SplashView({Key? key}) : super(key: key);
 
   @override
   State<SplashView> createState() => _SplashViewState();
 }
 
 class _SplashViewState extends State<SplashView> {
-
   Timer? _timer;
 
   _startDelay() {
@@ -21,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() {
-    Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+    Navigator.pushReplacementNamed(context, Routes.homeRoute);
   }
 
   @override
@@ -40,9 +39,7 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     const assets = Assets.images;
     return Scaffold(
-      backgroundColor: ColorManager.primary,
-
-      body: Center(child: Image.asset(assets.onBoardingImage1.path))
-    );
+        backgroundColor: ColorManager.primary,
+        body: Center(child: Image.asset(assets.onBoardingImage1.path)));
   }
 }
