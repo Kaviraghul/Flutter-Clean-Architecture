@@ -1,11 +1,16 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/app/dependency_injection.dart';
 import 'package:flutter_clean_architecture/presentation/resources/routes_manager.dart';
 import 'package:flutter_clean_architecture/presentation/resources/theme_manager.dart';
+import 'package:flutter_clean_architecture/simple_bloc_observer.dart';
+import 'package:go_router/go_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initAppModule();
+  Bloc.observer = SimpleBlocObserver();
+
   runApp(MyApp());
 }
 
@@ -24,11 +29,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final GoRouter goRoute = AppRoutes(initRoute: Routes.mainRoute).router;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
+    return MaterialApp.router(
+      routeInformationParser: goRoute.routeInformationParser,
+      routeInformationProvider: goRoute.routeInformationProvider,
+      routerDelegate: goRoute.routerDelegate,
       theme: getApplicationTheme(),
     );
   }

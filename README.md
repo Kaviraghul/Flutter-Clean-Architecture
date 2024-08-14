@@ -1,4 +1,4 @@
-# flutter_clean_architecture
+<!-- # flutter_clean_architecture
 
 A new Flutter project.
 
@@ -13,4 +13,15 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+samples, guidance on mobile development, and a full API reference. -->
+
+
+
+
+# Ecommerce Application
+
+This is a multivendor ecommerce application with
+
+1. Firebase phonenumber/otp authentication
+2. Navigate across different screens using go_router package
+3. Navigate across different main screens like home, setting, orders using shell router.
