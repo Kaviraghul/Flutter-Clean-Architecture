@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/presentation/main/components/home_app_bar/home_search_bar.dart';
+part './home_search_bar.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({

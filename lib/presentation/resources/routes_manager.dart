@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/presentation/main/home/home_page.dart';
+import 'package:flutter_clean_architecture/presentation/main/home/home_screen.dart';
 import 'package:flutter_clean_architecture/presentation/main/main_view.dart';
 import 'package:flutter_clean_architecture/presentation/main/settings/settings_page.dart';
 import 'package:flutter_clean_architecture/presentation/onboarding/onboarding.dart';

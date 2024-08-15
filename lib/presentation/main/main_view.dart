@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/presentation/main/components/bottom_nav_bar/bloc/bottom_nav_bar_bloc.dart';
-import 'package:flutter_clean_architecture/presentation/main/components/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:flutter_clean_architecture/presentation/main/home/home_page.dart';
+import 'package:flutter_clean_architecture/presentation/main/components/common_components.dart';
+import 'package:flutter_clean_architecture/presentation/main/home/home_screen.dart';
 import 'package:flutter_clean_architecture/presentation/main/orders/orders_page.dart';
 import 'package:flutter_clean_architecture/presentation/main/settings/settings_page.dart';
 
@@ -22,15 +21,16 @@ class _MainViewState extends State<MainView> {
         bottomNavigationBar: const AppBottomNavBar(),
         body: BlocBuilder<BottomNavBarBloc, BottomNavBarState>(
           builder: (context, state) {
-            return _getHomeChildComponent(
-                state is BottomNavBarIndex ? state.index : 0);
+            return _getMainScreenSection(
+              state is BottomNavBarIndex ? state.index : 0,
+            );
           },
         ),
       ),
     );
   }
 
-  Widget _getHomeChildComponent(int index) {
+  Widget _getMainScreenSection(int index) {
     switch (index) {
       case 0:
         return const HomePage();
